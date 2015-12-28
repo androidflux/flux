@@ -2,26 +2,20 @@ package com.example.flux.android.stores;
 
 import com.example.flux.android.actions.Action;
 import com.example.flux.android.actions.MessageAction;
-import com.example.flux.android.dispatcher.Dispatcher;
 import com.example.flux.android.model.Message;
+import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 /**
+ * MessageStore类主要用来维护MainActivity的UI状态
  * Created by ntop on 18/12/15.
  */
 public class MessageStore extends Store {
     private static MessageStore singleton;
     private Message mMessage = new Message();
 
-    protected MessageStore(Dispatcher dispatcher) {
-        super(dispatcher);
-    }
-
-    public static MessageStore get(Dispatcher dispatcher) {
-        if (singleton == null) {
-            singleton = new MessageStore(dispatcher);
-        }
-        return singleton;
+    public MessageStore() {
+        super();
     }
 
     public String getMessage() {
@@ -42,10 +36,7 @@ public class MessageStore extends Store {
 
 
     @Override
-    StoreChangeEvent changeEvent() {
-        return new MessageStoreChangeEvent();
-    }
-
-    public class MessageStoreChangeEvent implements StoreChangeEvent {
+    public StoreChangeEvent changeEvent() {
+        return new StoreChangeEvent();
     }
 }

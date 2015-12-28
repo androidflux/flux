@@ -3,6 +3,7 @@ package com.example.flux.android.actions;
 import com.example.flux.android.dispatcher.Dispatcher;
 
 /**
+ * Flux的ActionCreator模块
  * Created by ntop on 18/12/15.
  */
 public class ActionsCreator {

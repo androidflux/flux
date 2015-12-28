@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.flux.android.stores.Store;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -15,6 +16,7 @@ import com.example.flux.android.dispatcher.Dispatcher;
 import com.example.flux.android.stores.MessageStore;
 
 /**
+ * Flux的Controller-View模块
  * Created by ntop on 18/12/15.
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,10 +36,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setupView();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dispatcher.unregister(store);
+    }
+
     private void initDependencies() {
-        dispatcher = Dispatcher.get(new Bus());
+        dispatcher = Dispatcher.get();
         actionsCreator = ActionsCreator.get(dispatcher);
-        store = MessageStore.get(dispatcher);
+        store = new MessageStore();
+        dispatcher.register(store);
     }
 
     private void setupView() {
@@ -65,19 +74,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        dispatcher.register(this);
-        dispatcher.register(store);
+        store.register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        dispatcher.unregister(this);
-        dispatcher.unregister(store);
+        store.unregister(this);
     }
 
     @Subscribe
-    public void onStoreChange(MessageStore.MessageStoreChangeEvent event) {
+    public void onStoreChange(Store.StoreChangeEvent event) {
         render(store);
     }
 }

@@ -5,7 +5,7 @@ package com.example.flux.android.actions;
  */
 public class Action<T> {
     private final String type;
-    private T data;
+    private final T data;
 
     Action(String type, T data) {
         this.type = type;
