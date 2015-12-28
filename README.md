@@ -1,4 +1,4 @@
-这是一个极简的HelloWorld应用，主要用来展示如何在Android平台架构Flux应用。并提供一些基础代码，方便开发者直接Copy这些代码到自己的工程中，省掉重新造轮子的过程。代码地址在[HelloWorld](https://github.com/androidflux/flux)，接下来会一步步的解释这个应用是如何构建的。
+这是一个极简的HelloWorld应用，主要用来展示如何在Android平台架构Flux应用。并提供一些基础代码，方便开发者直接Copy这些代码到自己的工程中，省掉重新造轮子的过程。接下来会一步步的解释这个应用是如何构建的。
 
 *Demo程序是用AndroidStudio开发的，假设你已经了解Android和AndroidStudioIDE，如果你已经很熟悉Android应用的开发，看完[AndroidFlux一览](http://androidflux.github.io/docs/overview.html#content)或许已经可以开发出基于Flux框架的应用，如果你并不熟悉Flux或者Android，务必先读完这篇文档*
 
